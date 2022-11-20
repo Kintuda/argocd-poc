@@ -3,6 +3,8 @@ kind: Application
 metadata:
   name: fluent-bit
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-options: Prune=false
 spec:
   project: default
   source:
