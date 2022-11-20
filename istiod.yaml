@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: istiod
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: base
+    repoURL: https://storage.googleapis.com/istio-release/releases/1.5.4/charts
+    targetRevision: 1.5.4
+    helm:
+      releaseName: istiod
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: istio-system
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
